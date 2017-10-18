@@ -2,33 +2,28 @@
 title: Hotels.ng API Docs
 
 language_tabs: # must be one of https://git.io/vQNgJ
+  - shell
   - ruby
-  - python
   - php
   - javascript
 
+toc_footers:
+  - <a href='#'>Sign Up for a Developer Key</a>
+  - <a href='https://github.com/tripit/slate'>Documentation Powered by Slate</a>
 
 includes:
-  - search
-  - bookings
-  - images
-  - facilities
-  - reviews
-  - locations
-  - rooms
-  - ratings
-  - reports
-  - users
-  
+  - errors
 
 search: true
 ---
 
 # Introduction
 
-Welcome to the Hotels.ng API! You can use our API to integrate within your applications.
+Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
 
+We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
 
+This example API documentation page was created with [Slate](https://github.com/tripit/slate). Feel free to edit it and use it as a base for your own API's documentation.
 
 # Authentication
 
@@ -70,11 +65,67 @@ Kittn expects for the API key to be included in all API requests to the server i
 You must replace <code>meowmeowmeow</code> with your personal API key.
 </aside>
 
+# Bookings 
+
+## Get Bookings For a Particular User
+
+
+```php
+<?php
+$ch = curl_init();
+
+curl_setopt($ch, CURLOPT_URL, "http://staging.api.hng.tech/bookings/{booking_id}?access_token=");
+curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
+curl_setopt($ch, CURLOPT_HEADER, FALSE);
+
+curl_setopt($ch, CURLOPT_HTTPHEADER, array(
+  "Content-Type: application/json",
+  "Accept: application/json"
+));
+
+$response = curl_exec($ch);
+curl_close($ch);
+
+var_dump($response);
+?>
+```
+
+> The response will look like this 
+
+```
+{
+	"data":	{	
+			"total":0,
+			"bookings":[]
+		},
+		"status":"success"
+}
+
+```
+
+### HTTP Request
+
+`GET http://staging.api.hng.tech/bookings/booking_id=?access_token=`
+
+### Query Parameters
+
+Parameter |  Type | Description
+--------- | ------- | -----------
+booking_id | Number | Local id assigned to that booking
+access_token | String | Generated access token from Oauth2 developer credentials
 
 
 
 
-<!-- # Kittens
+
+
+
+
+
+
+
+
+# Kittens
 
 ## Get All Kittens
 
@@ -244,5 +295,5 @@ This endpoint retrieves a specific kitten.
 
 Parameter | Description
 --------- | -----------
-ID | The ID of the kitten to delete -->
+ID | The ID of the kitten to delete
 
